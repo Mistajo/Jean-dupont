@@ -2,7 +2,6 @@
 namespace App\Trait;
 
     trait TimeZoneTrait
-
     {
         public function changeTimeZone(string $timeZone) : void
         {

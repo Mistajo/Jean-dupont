@@ -47,7 +47,7 @@
                         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     {% endif %}
 
-                    <form method="POST">
+                    <form method="POST" class="w-100">
                         <div class="mb-3">
                             <label for="authentication_form_email">Email</label>
                             <input type="email" value="{{ last_username }}" name="email" id="authentication_form_email" class="form-control" autocomplete="email" required autofocus>
@@ -58,7 +58,7 @@
                         </div>
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
                         <div class="mb-3">
-                            <input formnovalidate type="submit" class="btn btn-primary w-100 shadow">
+                            <input formnovalidate type="submit" class="btn btn-primary w-100 shadow" value="Je me connecte">
                         </div>
                     </form>
 
