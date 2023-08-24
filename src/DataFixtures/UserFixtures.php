@@ -26,7 +26,7 @@ class UserFixtures extends Fixture
         $manager->flush();
     }
 
-    private function createSuperAdmin() : User
+    private function createSuperAdmin(): User
     {
         $user = new User();
 

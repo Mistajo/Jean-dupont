@@ -31,11 +31,10 @@ class PostFormType extends AbstractType
             ->add('tags', EntityType::class, [
                 // looks for choices from this entity
                 'class' => Tag::class,
-                
+
                 'choice_label' => 'name',
 
                 'multiple' => true,
-            
             ])
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
