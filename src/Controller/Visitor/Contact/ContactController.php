@@ -18,16 +18,14 @@ class ContactController extends AbstractController
         Request $request,
         EntityManagerInterface $em,
         SendEmailService $sendEmailService
-    ): Response
-    {
+    ): Response {
         $contact = new Contact();
 
         $form = $this->createForm(ContactFormType::class, $contact);
 
         $form->handleRequest($request);
 
-        if ( $form->isSubmitted() && $form->isValid() ) 
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($contact);
             $em->flush();
 
