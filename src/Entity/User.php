@@ -55,10 +55,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
+    
 
 
-
-
+    
     #[Assert\NotBlank(message: "L'email est obligatoire.")]
     #[Assert\Length(
         max: 180,
@@ -91,7 +91,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     #[Assert\Regex(
         // pattern: "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&].{12,255}$/",
-        pattern: "/^(?=.*[a-zà-ÿ])(?=.*[A-ZÀ-Ỳ])(?=.*[0-9])(?=.*[^a-zà-ÿA-ZÀ-Ỳ0-9]).{12,255}$/",
+        pattern: "/^(?=.*[a-zà-ÿ])(?=.*[A-ZÀ-Ỳ])(?=.*[0-9])(?=.*[^a-zà-ÿA-ZÀ-Ỳ0-9]).{11,255}$/",
+        // pattern: "/^(?=.*[a-zà-ÿ])(?=.*[A-ZÀ-Ỳ])(?=.*[0-9])(?=.*[^a-zà-ÿA-ZÀ-Ỳ0-9])+$/",
         match: true,
         message: "Le mot de passe doit contentir au moins une lettre miniscule, majuscule, un chiffre et un caractère spécial.",
     )]

@@ -7,6 +7,8 @@
         {# Le titre de la page #}
         <title>Jean Dupont{% block title %}{% endblock %}</title>
 
+        <meta name="description" content="{% block description %}{% endblock %}">
+        
         {# Favicon #}
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">
@@ -18,6 +20,9 @@
 
         {# Font awesome #}
         {% block fontAwesome %}{% endblock %}
+
+        {# No SEO for user area #}
+        <meta name="robots" content="noindex, nofollow">
 
         {# Font family #}
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,13 +45,13 @@
     <body class="jd-body">
 
         {# Navbar #}
-        {% include "layouts/navbar/navbar_visitor.html.twig" %}
+        {% include "layouts/navbar/navbar_user.html.twig" %}
 
         {# The specific content for each page #}
         {% block main %}{% endblock %}
 
         {# Footer #}
-        {% include "layouts/footer/footer_visitor.html.twig" %} 
+        {% include "layouts/footer/footer_user.html.twig" %}
 
     </body>
 </html>

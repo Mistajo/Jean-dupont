@@ -19,47 +19,68 @@ class ProfileController extends AbstractController
         return $this->render('pages/admin/profile/index.html.twig');
     }
 
-    #[Route('/admin/profile/edit', name: 'admin.profile.edit', methods: ['GET', 'PUT'])]
-    public function edit(Request $request, EntityManagerInterface $em): Response
+
+    #[Route('/admin/profile/edit', name: 'admin.profile.edit', methods:['GET', 'PUT'])]
+    public function edit(Request $request, EntityManagerInterface $em) : Response
     {
         $user = $this->getUser();
+
         $form = $this->createForm(EditProfileFormType::class, $user, [
             'method' => "PUT"
         ]);
+
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
             $em->persist($user);
             $em->flush();
-            $this->addFlash("success", "Votre profil a bien été modifié");
+
+            $this->addFlash('success', "Votre profil a été modifié.");
+
             return $this->redirectToRoute('admin.profile.index');
         }
+
         return $this->render("pages/admin/profile/edit.html.twig", [
             "form" => $form->createView()
         ]);
     }
 
-    #[Route('/admin/profile/edit-password', name: 'admin.profile.edit_password', methods: ['GET', 'PUT'])]
-    public function editPassword(Request $request, UserPasswordHasherInterface $hasher, EntityManagerInterface $em): Response
+
+    #[Route('/admin/profile/edit-password', name: 'admin.profile.edit_password', methods:['GET', 'PUT'])]
+    public function editPassword(
+        Request $request, 
+        UserPasswordHasherInterface $hasher, 
+        EntityManagerInterface $em
+        ) : Response
     {
         $user = $this->getUser();
+
         $form = $this->createForm(EditProfilePasswordFormType::class, null, [
-            'method' => "PUT"
+            'method' => 'PUT'
         ]);
+
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
             $data = $request->request->all();
             $password = $data['edit_profile_password_form']['password']['first'];
 
             $passwordHashed = $hasher->hashPassword($user, $password);
             $user->setPassword($passwordHashed);
 
+            $em->persist($user);
             $em->flush();
-            $this->addFlash("success", "Votre mot de passe a bien été modifié");
+
+            $this->addFlash('success', "Votre mot de passe a été modifié.");
             return $this->redirectToRoute('admin.profile.index');
         }
+
         return $this->render("pages/admin/profile/edit_password.html.twig", [
             'form' => $form->createView()
         ]);
     }
+
+
 }

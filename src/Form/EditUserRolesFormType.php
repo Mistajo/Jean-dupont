@@ -16,15 +16,16 @@ class EditUserRolesFormType extends AbstractType
         $builder
             ->add('roles', ChoiceType::class, [
                 'constraints' => [
-                    new NotBlank(),
+                    new NotBlank()
                 ],
                 'choices'  => [
                     'Rôle utilisateur' => "ROLE_USER",
-                    'Rôle administrateur' => "ROLE_ADMIN",
+                    'Rôle administrateur' => "ROLE_ADMIN"
                 ],
                 'expanded' => false,
-                'multiple' => true,
-            ]);
+                'multiple' => true
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -11,12 +11,13 @@ class SettingFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $setting = $this->createSetting();
+        
         $manager->persist($setting);
 
         $manager->flush();
     }
 
-    private function createSetting(): Setting
+    private function createSetting() : Setting
     {
         $setting = new Setting();
 
