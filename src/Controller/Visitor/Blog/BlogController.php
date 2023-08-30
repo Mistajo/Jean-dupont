@@ -4,6 +4,7 @@ namespace App\Controller\Visitor\Blog;
 
 use App\Entity\Post;
 use App\Entity\Comment;
+use App\Entity\Category;
 use App\Form\CommentFormType;
 use App\Repository\TagRepository;
 use App\Repository\PostRepository;
@@ -21,11 +22,10 @@ class BlogController extends AbstractController
         CategoryRepository $categoryRepository,
         TagRepository $tagRepository,
         PostRepository $postRepository
-    ): Response
-    {
+    ): Response {
         $categories = $categoryRepository->findAll();
         $tags       = $tagRepository->findAll();
-        $posts      = $postRepository->findBy(['isPublished'=> true], ['publishedAt' => 'DESC']);
+        $posts      = $postRepository->findBy(['isPublished' => true], ['publishedAt' => 'DESC']);
 
         return $this->render('pages/visitor/blog/index.html.twig', [
             'categories' => $categories,
@@ -37,19 +37,17 @@ class BlogController extends AbstractController
 
     #[Route('/blog/post/{id}/{slug}', name: 'visitor.blog.post.show', methods: ['GET', 'POST'])]
     public function show(
-        Post $post, 
+        Post $post,
         Request $request,
         EntityManagerInterface $em
-    ) : Response
-    {
+    ): Response {
         $comment = new Comment();
 
         $form = $this->createForm(CommentFormType::class, $comment);
 
         $form->handleRequest($request);
 
-        if ( $form->isSubmitted() && $form->isValid() ) 
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $comment->setPost($post);
             $comment->setUser($this->getUser());
 
@@ -68,4 +66,9 @@ class BlogController extends AbstractController
         ]);
     }
 
+    #[Route('/blog/posts/filter-by-category/{slug}', name: 'visitor.blog.posts.filter_by_category', methods: ['GET'])]
+    public function filterByCategory(Category $category): Response
+    {
+        dd($category);
+    }
 }

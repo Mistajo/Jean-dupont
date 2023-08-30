@@ -98,6 +98,20 @@ class Category
     {
         return $this->posts;
     }
+    /**
+     * @return array
+     */
+    public function getPublishedPosts(): array
+    {
+        $allPosts = $this->getPosts()->toArray();
+        $publishedPost = [];
+        foreach ($allPosts as $post) {
+            if ($post->isIsPublished() == true) {
+                $publishedPost[] = $post;
+            }
+        }
+        return $publishedPost;
+    }
 
     public function addPost(Post $post): static
     {
