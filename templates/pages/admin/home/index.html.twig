@@ -1,9 +1,89 @@
 {% extends "themes/base_admin.html.twig" %}
 
-{% block title %}Le blog de Jean Dupont - Admin - Tableau de bord{% endblock %}
+{% block title %}Le blog de Jean Dupont - Admin - Tableau de bord
+{% endblock %}
 
-{% block description %}Le blog de Jean Dupont - Admin - Tableau de bord{% endblock %}
+{% block description %}Le blog de Jean Dupont - Admin - Tableau de bord
+{% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Hello {{app.user.firstName}}</h1>
+	<h1 class="text-center my-3 display-5">Hello
+		{{app.user.firstName}}</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 d-flex justify-content-center align-items-center">
+				<div class="card text-bg-light mb-3 w-100">
+					<a href="{{path('admin.contact.index')}}">
+						<div class="card-header">Les contacts</div>
+					</a>
+					<div class="card-body">
+						<p class="card-text">{{contact|length}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 d-flex justify-content-center align-items-center">
+				<div class="card text-bg-light mb-3 w-100">
+					<a href="{{path('admin.post.index')}}">
+						<div class="card-header">Les Articles</div>
+					</a>
+					<div class="card-body">
+						<p class="card-text">{{post|length}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 d-flex justify-content-center align-items-center">
+				<div class="card text-bg-light mb-3 w-100">
+					<a href="{{path('admin.tag.index')}}">
+						<div class="card-header">Les Tags</div>
+					</a>
+					<div class="card-body">
+						<p class="card-text">{{tag|length}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 d-flex justify-content-center align-items-center">
+				<div class="card text-bg-light mb-3 w-100">
+					<a href="{{path('admin.user.index')}}">
+						<div class="card-header">Les Utilisateurs</div>
+					</a>
+					<div class="card-body">
+						<p class="card-text">{{user|length}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 d-flex justify-content-center align-items-center">
+				<div class="card text-bg-light mb-3 w-100">
+					<a href="{{path('admin.comment.index')}}">
+						<div class="card-header">Les Commentaires</div>
+					</a>
+					<div class="card-body">
+						<p class="card-text">{{comment|length}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 d-flex justify-content-center align-items-center">
+				<div class="card text-bg-light mb-3 w-100">
+					<a href="{{path('admin.category.index')}}">
+						<div class="card-header">Les Categories</div>
+					</a>
+					<div class="card-body">
+						<p class="card-text">{{category|length}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 d-flex justify-content-center align-items-center">
+				<div class="card text-bg-light mb-3 w-100">
+					<a href="#">
+						<div class="card-header">Les Likes</div>
+					</a>
+					<div class="card-body">
+						<p class="card-text">{{postLike|length}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
 {% endblock %}
