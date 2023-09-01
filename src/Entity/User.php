@@ -55,10 +55,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
-    
 
 
-    
+
+
     #[Assert\NotBlank(message: "L'email est obligatoire.")]
     #[Assert\Length(
         max: 180,
@@ -120,7 +120,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: PostLike::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: PostLike::class, orphanRemoval: true)]
     private Collection $postLikes;
 
 
