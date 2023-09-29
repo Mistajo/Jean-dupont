@@ -30,7 +30,7 @@ class UserFixtures extends Fixture
     {
         $user = new User();
 
-        $passwordHashed = $this->hasher->hashPassword($user, "Joan@456789*");
+        $passwordHashed = $this->hasher->hashPassword($user, "Joan@456789**");
 
         $user->setFirstName('Jean');
         $user->setLastName('Dupont');

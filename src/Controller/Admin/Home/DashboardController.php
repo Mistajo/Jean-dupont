@@ -16,16 +16,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class DashboardController extends AbstractController
 {
     #[Route('/admin/home/dashboard', name: 'admin.home.dashboard')]
-    public function index(ContactRepository $contactRepository, PostRepository $postRepository, TagRepository $tagRepository, UserRepository $userRepository, CommentRepository $commentRepository, CategoryRepository $categoryRepository, PostLikeRepository $postLikeRepository): Response
+    public function index(
+        ContactRepository $contactRepository,
+        PostRepository $postRepository,
+        TagRepository $tagRepository,
+        UserRepository $userRepository,
+        CommentRepository $commentRepository,
+        CategoryRepository $categoryRepository,
+        PostLikeRepository $postLikeRepository
+    ): Response
     {
         return $this->render('pages/admin/home/index.html.twig', [
-            'contact' => $contactRepository->findAll(),
-            'post' => $postRepository->findAll(),
-            'tag' => $tagRepository->findAll(),
-            'user' => $userRepository->findAll(),
-            'comment' => $commentRepository->findAll(),
-            'category' => $categoryRepository->findAll(),
-            'postLike' => $postLikeRepository->findAll(),
+            'contacts'      => $contactRepository->findAll(),
+            'posts'         => $postRepository->findAll(),
+            'categories'    => $categoryRepository->findAll(),
+            'comments'      => $commentRepository->findAll(),
+            'tags'          => $tagRepository->findAll(),
+            'postLikes'     => $postLikeRepository->findAll(),
+            'users'         => $userRepository->findAll(),
         ]);
     }
 }
